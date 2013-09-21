@@ -1,0 +1,38 @@
+class Trigger(object):
+    def evaluate(self, story):
+        """
+        Returns True if an alert should be generated
+        for the given news item, or False otherwise.
+        """
+        raise NotImplementedError
+
+# Whole Word Triggers
+# Problems 2-5
+
+class WordTrigger(Trigger):
+    def __init__(self, word):
+        word = word.lower()
+        self.word = word
+    
+    def isWordIn(self, story):
+        """
+            Returns True if a word is in a given news item, or False otherwise.
+            Assumes story is a string. Returns word in story.
+            """
+        wordList = []
+        story = story.lower()
+        import string
+        for e in string.punctuation:
+            if e in story:
+                story = story.replace(e, ' ')
+        wordList = story.split(' ')
+
+        if self.word in wordList:
+            if wordList[wordList.index(self.word)] == self.word:
+                return True
+        return False
+
+
+c1 = WordTrigger('word')
+print c1.isWordIn('There is a word')
+

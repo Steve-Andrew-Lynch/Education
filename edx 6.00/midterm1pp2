@@ -1,0 +1,52 @@
+def generateTemplates(madLibsForm):
+    """ 
+    madLibsForm: string, in a Mad-Lib form. See output of `generateForm`
+
+    returns: a list of '[ADJ]', '[VERB]', and '[NOUN]' strings, in
+    the order they appear in the madLibsForm.
+    """
+    # Your Code Here
+    madTemplate = madLibsForm.split()
+    finalTemplate = []
+    for word in madTemplate:
+        if word == '[ADJ]' or word == '[NOUN]' or word == '[VERB]':
+            finalTemplate.append(word)
+        else:
+            pass
+    return finalTemplate
+
+def generateForm(story, listOfAdjs, listOfNouns, listOfVerbs):
+    """ 
+    story: a string containing sentences
+    listOfAdjs: a list of valid adjectives
+    listOfNouns: a list of valid nouns
+    listOfVerbs: a list of valid verbs
+
+    For each word in story that is in one of the lists,
+    * replace it with the string '[ADJ]' if the word is in listOfAdjs
+    * replace it with the string '[VERB]' if the word is in listOfVerbs
+    * replace it with the string '[NOUN]' if the word is in listOfNouns
+
+    returns: string, A Mad-Libs form of the story. 
+    """
+    aStory = story.split()
+    for word in aStory:
+        print aStory
+        if word in listOfAdjs:
+            aStory.insert(aStory.index(word), '[ADJ]')
+            aStory.pop(aStory.index(word))
+        if word in listOfNouns:
+            aStory.insert(aStory.index(word), '[NOUN]')
+            aStory.pop(aStory.index(word))
+        if word in listOfVerbs:
+            aStory.insert(aStory.index(word), '[VERB]')
+            aStory.pop(aStory.index(word))
+        else:
+            pass
+        
+    return ' '.join(aStory)
+
+
+
+print generateTemplates('At the [ADJ] thrift [NOUN] I [VERB] a pair of [ADJ] [NOUN] that [VERB] like [NOUN] your [NOUN] might wear')
+

@@ -1,0 +1,58 @@
+from TurtleWorld import *
+
+import math
+
+world = TurtleWorld()
+
+bob = Turtle()
+
+
+##for i in range(4):
+##    fd(bob, 100)
+##    lt(bob)
+
+
+##def square(t, length):
+##    for i in range(4):
+##        fd(t, length)
+##        lt(t)
+##    print t
+
+
+##def polygon(t, length, n):
+##    ang = 360/n
+##    for i in range(n):
+##        fd(t, length)
+##        lt(t, ang)
+##    print t
+##
+##def circle(t, r):
+##    circ = 2 * math.pi * r
+##    n = int(circ/3) + 1
+##    length = circ / n
+##    polygon(t, length, n)
+
+
+def polyline(t, n, length, angle):
+    for i in range(n):
+        fd(t, length)
+        lt(t, angle)
+
+
+def arc(t, r, angle):
+    arc_length = 2 * math.pi * r * angle/ 360
+    n = int(arc_length/3) + 1
+    step_length = arc_length / n
+    step_angle = float(angle) / n
+    polyline(t, n, step_length, step_angle)
+    
+def polygon(t, n, length):
+    ang = 360.0 /n
+    polyline(t, n, length, ang)
+
+def circle(t, r):
+    arc(t, r, 360)
+
+arc(bob, 50, 180)
+
+wait_for_user()

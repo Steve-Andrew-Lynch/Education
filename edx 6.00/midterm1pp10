@@ -1,0 +1,58 @@
+def numPens(n):
+    """
+    n is a non-negative integer
+
+    Returns True if some non-negative integer combination of 5, 8 and 24 equals n
+    Otherwise returns False.
+
+    THIS CODE DID NOT PASS -- SEE EVERNOTE CLIPS FOR POSSIBLE SOLUTION
+    """
+    def penAdder(numbers, target, runningList):
+        if sum(numbers) == target:
+            return True
+        if sum(numbers) > target:
+            pass
+
+        for x in numbers:
+            if numPens(target + x):
+                return
+
+        return False
+
+    def penCount(n):
+        global ANS
+        ANS = False
+        if penAdder([5, 8, 24], n, []) == True:
+            ANS = True
+        return ANS
+
+
+    ans = False
+
+    if n < 5:
+        ans = False
+        return ans
+    if n % 5 == 0:
+        ans = True
+        return ans
+    if n % 8 == 0:
+        ans = True
+        return ans
+    if n % 24 == 0:
+        ans = True
+        return ans
+    if n > 40:
+        ans = True
+        return True
+
+    else:
+        if penCount(n) == True:
+            ans = True
+            return ans
+        else:
+            return ans
+
+
+print numPens(34)
+
+    

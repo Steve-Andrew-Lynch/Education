@@ -1,0 +1,23 @@
+import random
+
+def noReplacementSimulation(numTrials):
+    '''
+    Runs numTrials trials of a Monte Carlo simulation
+    of drawing 3 balls out of a bucket containing
+    3 red and 3 green balls. Balls are not replaced once
+    drawn. Returns the a decimal - the fraction of times 3 
+    balls of the same color were drawn.
+    '''
+    success = 0.0
+    for i in range(numTrials):
+        choices = [1, 1, 1, 2, 2, 2]
+        result = []
+        for e in range(3):
+            temp = random.choice(choices)
+            choices.remove(temp)
+            result.append(temp)
+            if result == [1, 1, 1] or result == [2, 2, 2]:
+                success += 1
+    return numTrials/success
+
+print noReplacementSimulation(100)

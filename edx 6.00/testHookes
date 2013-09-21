@@ -1,0 +1,7 @@
+def findK(m, g, x):
+    return float(m*g / x)
+
+print findK(0.1, 9.81
+            , 0.0865) 
+
+print findK(.15, 9.81, 0.1015)
