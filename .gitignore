@@ -1,5 +1,10 @@
+<<<<<<< Updated upstream
 # History files
 .Rhistory
 
 # Example code in package build process
 *-Ex.R
+=======
+#History files
+.Rhistory
+>>>>>>> Stashed changes
