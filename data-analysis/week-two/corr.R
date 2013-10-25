@@ -45,3 +45,6 @@ corr <- function(directory, threshold = 0) {
 ##summary(cr)
 ##cr<-corr("specdata", 400)
 ##head(cr)
+
+source("http://spark-public.s3.amazonaws.com/compdata/scripts/corr-test.R")
+corr.testscript()

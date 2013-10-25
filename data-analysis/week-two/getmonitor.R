@@ -33,3 +33,6 @@ getmonitor <- function(id, directory, summarize = FALSE) {
 ##data <- getmonitor(101, "specdata", TRUE)
 ##head(data)
 ##data <- getmonitor(200, "specdata", TRUE)
+
+source("http://spark-public.s3.amazonaws.com/compdata/scripts/getmonitor-test.R")
+getmonitor.testscript()

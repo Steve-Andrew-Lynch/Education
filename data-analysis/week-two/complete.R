@@ -33,3 +33,6 @@ complete <- function(directory, id = 1:332) {
 ##complete("specdata", 1)
 ##complete("specdata", 2)
 ##complete("specdata", 30:25)
+
+source("http://spark-public.s3.amazonaws.com/compdata/scripts/complete-test.R")
+complete.testscript()
