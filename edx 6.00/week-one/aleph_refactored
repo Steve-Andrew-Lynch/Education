@@ -1,0 +1,14 @@
+##s = 'okjyqewsvramigmvx'
+longest = s[0]
+
+for i in range(len(s)-1):
+    tmp = s[i]
+    for x in range(i+1, len(s)):
+        if s[x] >= s[x-1]:
+            tmp = tmp + s[x]
+            if len(tmp) > len(longest):
+                longest = tmp
+        else:
+            break
+          
+print "Longest substring in alphabetical order is: ", longest

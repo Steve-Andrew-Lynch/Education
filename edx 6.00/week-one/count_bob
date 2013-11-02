@@ -1,0 +1,11 @@
+
+count = 0
+for i in range((len(s)+1)):
+    if i == len(s) - 2:
+        break
+    elif s[i] == 'b' and s[i+1] == 'o' and s[(i + 2)] == 'b':
+        print 'counting!'
+        count += 1
+
+                    
+print "Number of times bob occurs is: ", count

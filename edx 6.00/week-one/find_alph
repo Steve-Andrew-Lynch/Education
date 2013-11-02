@@ -1,0 +1,25 @@
+##s = 'azcbobobegghakl'
+longest = s[0]
+
+for i in range(len(s)-1):
+##    print 'i is ', s[i]
+    for x in range(i+1, len(s)-1):
+        tmp = ''
+##        print 'x is ', s[x], ' and x+1 is ', s[x+1]
+
+        if s[x] >= s[x-1] and s[x] <= s[x+1]:
+##            print 'counting! ', s[i:x+2]
+            tmp = s[i:x+2]
+            if len(tmp) > len(longest):
+                longest = tmp
+##                print 'longest = ', longest
+        elif s[x] >= s[x-1] and s[x] > s[x+1]:
+##            print 'counting! ', s[i:x+2]
+            tmp = s[i:x+1]
+            if len(tmp) > len(longest):
+                longest = tmp
+##                print 'longest = ', longest
+        else:
+            break
+          
+print "Longest substring in alphabetical order is: ", longest

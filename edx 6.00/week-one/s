@@ -1,0 +1,6 @@
+s = 'bobobbobbboobbobobbo'
+count = 0
+for c in s:
+    print c
+                    
+print "Number of times bob occurs is: ", count

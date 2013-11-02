@@ -1,0 +1,30 @@
+
+##balance = 320000
+##annualInterestRate = 0.2
+##
+##balance = 999999
+##annualInterestRate = 0.18
+
+
+monthInst = annualInterestRate/12.0
+upper = balance * (1+monthInst)**12 /12.0
+lower = balance /12
+change = 0.01
+pay = (upper + lower) / 2.0
+preBal = balance
+while abs((pay * 12) - (balance + (monthInst *12))) > change:
+    preBal = balance
+    for i in range(12):
+        monthUnpaidBal = preBal - pay
+        preBal = monthUnpaidBal + (monthInst*monthUnpaidBal)
+    if preBal > 0 and preBal <= change:
+        break
+    elif preBal > change:
+        print preBal
+        lower = pay
+    else:
+        upper = pay
+    pay = (upper + lower)/2.0
+
+
+print "Lowest payment: ", round(pay, 2)
