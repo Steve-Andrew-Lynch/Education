@@ -1,0 +1,180 @@
+import string
+
+def isWord(wordList, word):
+    """
+    Determines if word is a valid word.
+
+    wordList: list of words in the dictionary.
+    word: a possible word.
+    returns True if word is in wordList.
+
+    Example:
+    >>> isWord(wordList, 'bat') returns
+    True
+    >>> isWord(wordList, 'asdf') returns
+    False
+    """
+    word = word.lower()
+    word = word.strip(" !@#$%^&*()-_+={}[]|\\:;'<>?,./\"")
+    return word in wordList
+
+def loadWords():
+    """
+    Returns a list of valid words. Words are strings of lowercase letters.
+    
+    Depending on the size of the word list, this function may
+    take a while to finish.
+    """
+    print "Loading word list from file..."
+    inFile = open('words.txt', 'r')
+    wordList = inFile.read().split()
+    print "  ", len(wordList), "words loaded."
+    return wordList
+
+def buildCoder(shift):
+    """
+    Returns a dict that can apply a Caesar cipher to a letter.
+    The cipher is defined by the shift value. Ignores non-letter characters
+    like punctuation, numbers and spaces.
+
+    shift: 0 <= int < 26
+    returns: dict
+    """
+    cipherBook = {}
+    upperBook = {}
+    lowerBook = {}
+    upperLetters = [l for l in string.ascii_uppercase]
+    lowerLetters = [l for l in string.ascii_lowercase]
+ 
+
+    #write a dictionary that flexibly shifts letters paired with letters
+
+
+    #create a for loop that assigns a dictionary value (shifted) paired with a key based on the sequence of ascii uppercase and appends to cipherBook
+    for l in upperLetters:
+        letdex = upperLetters.index(l) + shift
+        if letdex < 26:
+            upperBook[l] = upperLetters[letdex]
+        else:
+            upperBook[l] = upperLetters[(letdex-26)]
+
+
+
+    #create a for loop that does the same, except for ascii lowercase
+    for k in lowerLetters:
+        letdex = lowerLetters.index(k) + shift
+        if letdex < 26:
+            lowerBook[k] = lowerLetters[letdex]
+        else:
+            lowerBook[k] = lowerLetters[(letdex-26)]
+
+    cipherBook = upperBook.copy()
+    cipherBook.update(lowerBook)
+    return cipherBook
+
+
+
+def applyCoder(text, coder):
+    """
+    Applies the coder to the text. Returns the encoded text.
+
+    text: string
+    coder: dict with mappings of characters to shifted characters
+    returns: text after mapping coder chars to original text
+    """
+    codedText = []
+    for c in text:
+        if c in coder:
+            codedText.append(coder[c])
+        else:
+            codedText.append(c)
+    return "".join(codedText)
+
+
+
+
+
+
+
+
+def applyShift(text, shift):
+    """
+    Given a text, returns a new text Caesar shifted by the given shift
+    offset. Lower case letters should remain lower case, upper case
+    letters should remain upper case, and all other punctuation should
+    stay as it is.
+
+    text: string to apply the shift to
+    shift: amount to shift the text (0 <= int < 26)
+    returns: text after being shifted by specified amount.
+    """
+    return applyCoder(text, buildCoder(shift))
+
+
+
+def findBestShift(wordList, text):
+    """
+    Finds a shift key that can decrypt the encoded text.
+
+    text: string
+    returns: 0 <= int < 26
+    """
+    #declare an empty list textList that we're going to use for our text.
+    textList = []
+    textCopy = ''
+
+    #declare bestShift initially at zero
+    bestShift = 0 
+
+    #declare a bestCounter for identified words for the best shift option so far
+    bestCounter = 0
+
+    #iterate through 0 to 25
+    for n in range(0, 26):
+        #declare a zeroed-out counter for identified words
+
+        counter = 0
+        print 'New! ', counter
+        print 'Best: ', bestShift
+        
+        #for each iteration, apply applyCoder with the iterator
+        textCopy = applyCoder(text, buildCoder(n))
+        
+        #split the sting into words, seperated by spaces
+        textList = textCopy.split(' ')
+        
+
+        #for each element in textList, run isWord
+        for w in textList:
+                
+            #if True, increment counter
+            if isWord(wordList, w):
+                    print w
+                    counter += 1
+                    print counter
+
+        #if counter is larger than bestShift, set bestShift to counter
+
+        if counter > bestShift:
+            bestShift = n
+            print bestShift
+
+    #return bestShift
+    return bestShift
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+print findBestShift(loadWords(), 'gas red cotton pig reduCe thin priCe tAxi aNYthiNg aDvertise')
